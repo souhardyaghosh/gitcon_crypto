@@ -1,104 +1,105 @@
 # 🚀 Post-Quantum Blockchain Security
 
-## 🔒 Overview
-This project implements **Post-Quantum Blockchain Security** using **hybrid cryptographic signatures**, **quantum-resistant key aggregation**, and **AI-driven threat detection** to safeguard blockchain networks against quantum attacks. 
+## 🔒 Problem Statement
+Quantum computing threatens existing cryptographic methods, requiring post-quantum security for blockchain networks. Our project aims to develop quantum-resistant cryptographic algorithms and AI-driven fraud detection mechanisms.
 
-## 🎯 Key Features
-### 1️⃣ **Hybrid Signatures with Adaptive Thresholds**
-- Dynamically selects signing method based on transaction value.
-- **High-value transactions**: Use **ECDSA + Dilithium** for maximum security.
-- **Low-value transactions**: Use only **Dilithium** to save space.
-- **Legacy transactions**: Allow **ECDSA-only** for backward compatibility.
+---
 
-### 2️⃣ **Quantum-Resistant Key Aggregation**
-- Reduces **signature size by 80%** by aggregating multiple transaction signatures into **one BLS signature**.
-- Uses **py-ecc** for BLS aggregation.
-- Optimizes **block space** and **verification speed**.
+## 🔑 Key Features
 
-### 3️⃣ **AI-Driven Quantum Threat Scoring**
-- Assigns a **Quantum Risk Score (0-100%)** to each blockchain node.
-- Features considered:
-  - Key type (**ECDSA vs. Dilithium**)
-  - Transaction volume
-  - Stake size
-- Helps **prioritize** which nodes should upgrade first.
+### 🛡️ Hybrid Signatures with Adaptive Thresholds
+- Uses **context-aware hybrid signing** to balance security and efficiency.
+- **High-value transactions** require **ECDSA + Dilithium** (dual signatures).
+- **Low-value transactions** use **Dilithium-only** (reducing signature bloat by 50%).
 
-## 🔗 **Project Flow**
+### 🔗 Quantum-Resistant Key Aggregation
+- Reduces signature storage **by 80%** using **BLS signature aggregation**.
+- Aggregates multiple **ECDSA & Dilithium signatures** into **one BLS signature**.
 
-### **1️⃣ Transaction Signing & Verification**
-1. A transaction request is made.
-2. The system determines the **appropriate signing method** based on **transaction value**.
-3. The signature is **generated using ECDSA, Dilithium, or both**.
-4. The transaction is **submitted to the blockchain**.
+### 🤖 AI-Driven Quantum Threat Scoring
+- Trains an **ML model** to predict **node vulnerability** to quantum threats.
+- Features include **Key Type (ECDSA/Dilithium), Transaction Volume, Stake Size**.
+- Outputs a **Quantum Risk Score (0-100%)**.
 
-### **2️⃣ Signature Aggregation**
-5. Multiple signatures are **aggregated into a single BLS signature**.
-6. The blockchain **validates the aggregated signature** for efficiency.
+### ⏳ Risk-Based Transaction Delays
+- High-risk transactions are **delayed dynamically** to prevent fraudulent activity.
+- **Low-risk (0-50)**: Instant processing.
+- **Medium-risk (50-75)**: 2-5 minute delay for validation.
+- **High-risk (75-100)**: 10+ minute delay, requiring **additional verification**.
 
-### **3️⃣ AI Threat Detection & Risk Scoring**
-7. AI analyzes transactions to detect **anomalies**.
-8. Each blockchain node receives a **Quantum Risk Score**.
-9. **High-risk nodes are flagged** and recommended for an upgrade.
+---
 
-## 🛠️ **Installation & Setup**
+## 🔄 Project Flow
+
+### 1️⃣ Transaction Initiation
+- User submits a **transaction request**.
+- System checks **transaction value & risk factors**.
+
+### 2️⃣ Hybrid Signature Generation
+- **Adaptive signing logic** assigns ECDSA, Dilithium, or both.
+- High-value transactions → **Dual Signature (ECDSA + Dilithium)**.
+- Low-value transactions → **Dilithium-only** for efficiency.
+
+### 3️⃣ Signature Aggregation (Quantum-Resistant)
+- **BLS Signature Aggregation** combines multiple transaction signatures.
+- Reduces **block size & speeds up validation**.
+
+### 4️⃣ AI-Driven Threat Analysis
+- **Machine Learning model** evaluates **Quantum Risk Score**.
+- **Red Nodes** = ECDSA (High Risk), **Green Nodes** = Dilithium (Low Risk).
+- System prioritizes **upgrading weak nodes**.
+
+### 5️⃣ Risk-Based Transaction Delays
+- If risk **>75**, transaction is **temporarily held**.
+- Additional **identity verification (OTP, MFA)** required.
+- If cleared, transaction **proceeds to blockchain**.
+
+---
+
+## 🛠️ Installation & Setup
 ```bash
-# Clone the repository
-git clone https://github.com/yourrepo/post-quantum-blockchain.git
-cd post-quantum-blockchain
+# Clone the repo
+git clone https://github.com/souhardyaghosh/gitcon_crypto.git
+cd gitcon_crypto
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Run the AI model training
+python train_model.py
+
+# Start the blockchain security API
+python backend_api.py
 ```
-
-## 🚀 **Running the Project**
-```bash
-# Run the transaction signing module
-python sign_transaction.py
-
-# Run the signature aggregation module
-python aggregate_sigs.py
-
-# Run AI risk scoring model
-python quantum_risk_model.py
-```
-
-## 📂 **Project Structure**
-```
-📦 post-quantum-blockchain
- ┣ 📂 models
- ┃ ┣ 📜 hybrid_sign.py  # Hybrid signature logic
- ┃ ┣ 📜 bls_aggregation.py  # BLS-based signature aggregation
- ┃ ┣ 📜 quantum_risk_ai.py  # AI-driven risk assessment
- ┃ ┗ 📜 train_model.py  # ML training script
- ┣ 📂 data
- ┃ ┣ 📜 transactions.csv  # Sample blockchain transactions
- ┃ ┗ 📜 risk_scores.csv  # AI-generated risk scores
- ┣ 📜 sign_transaction.py  # Main transaction signing script
- ┣ 📜 aggregate_sigs.py  # Signature aggregation handler
- ┣ 📜 quantum_risk_model.py  # Risk detection execution
- ┣ 📜 requirements.txt  # Dependencies
- ┣ 📜 README.md  # This file 📄
-┗ 📜 LICENSE  # Project license
-```
-
-## 📊 **Example Output**
-```bash
-Transaction Value: $1200
-Signing Method: Hybrid (ECDSA + Dilithium)
-Signature Size Reduced by: 50%
-Quantum Risk Score: 87% (High Risk)
-```
-
-## 📢 **Why This Matters**
-✅ **Future-Proof Security** – Protects blockchain transactions from quantum attacks.
-✅ **Efficient Storage & Verification** – Aggregated signatures reduce blockchain bloat.
-✅ **AI-Driven Insights** – Identifies vulnerable nodes before they become targets.
-
-## 🤝 **Contributing**
-Pull requests and suggestions are welcome! 😊
-
-## 📜 **License**
-MIT License © 2025 Souhardya Ghosh
 
 ---
-### 🚀 **Let's Secure the Blockchain for a Post-Quantum Era!** 🔐
+
+## 📂 Project Structure
+```plaintext
+📦 gitcon_crypto
+├── 📁 data                   # Dataset for training AI model
+├── 📁 models                 # Trained ML models for risk scoring
+├── 📁 blockchain             # Blockchain transaction processing
+├── backend_api.py            # API backend for blockchain security
+├── train_model.py            # AI Model Training script
+├── requirements.txt          # Python dependencies
+└── README.md                 # Documentation
+```
+
+---
+
+## 👥 Team Members
+- **Sarmad Sultan**
+- **Shazeb Amman**
+- **Garav Mallik**
+- **Ayush Kashyap**
+- **Souhardya Ghosh**
+
+---
+
+## 📜 License
+This project is licensed under the **MIT License**.
+
+---
+
+🚀 **Let's build a Quantum-Safe Future!**
